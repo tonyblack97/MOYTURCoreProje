@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TraversalCoreProje.Areas.Admin.Models.BookingHotelSearchViewModel.Result>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<h2>Booking Otel Rezervasyon Sayfası</h2>
+<h3>Arama Yapılan Şehir: Paris/Fransa/<h3>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Otel Adı</th>
+                <th>Lokasyon</th>
+                <th>Değerlendirme Puanı</th>
+                <th>Fiyatı</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hotel in Model)
+            {
+                <tr>
+                    <th>@hotel.name</th>
+                    <th>@hotel.latitude, @hotel.longitude</th>
+                    <th>@hotel.reviewScore (@hotel.reviewScoreWord)</th>
+                    <th>@hotel.priceBreakdown.grossPrice.currency @hotel.priceBreakdown.grossPrice.value</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No results found.</p>
+}
+
